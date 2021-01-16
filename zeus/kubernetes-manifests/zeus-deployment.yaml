@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zeus
+  template:
+    metadata:
+      labels:
+        app: zeus
+    spec:
+      containers:
+      - name: server
+        image: zeus
+        ports:
+        - containerPort: 9092
+        env:
+        - name: PORT
+          value: "9092"
+        resources: {}
+        tty: true
+      restartPolicy: Always
+status: {}   

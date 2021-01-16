@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hermes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hermes
+  template:
+    metadata:
+      labels:
+        app: hermes
+    spec:
+      containers:
+      - name: server
+        image: hermes
+        ports:
+        - containerPort: 9092
+        env:
+        - name: PORT
+          value: "9092"
+        resources: {}
+        tty: true
+      restartPolicy: Always
+status: {}   
